@@ -1,7 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/Patternslib/logging.png?branch=master)](https://travis-ci.org/Patternslib/logging)
 
 Introduction
-============
+------------
 
 This is a minimal logging framework for javascript. It implements a subset
 of the [log4javascript](http://log4javascript.org/) API, which itself is
@@ -43,48 +43,47 @@ query string by adding ``loglevel`` options.
   level for the inject pattern.
 
 
-Logging API
------------
-
-.. js:attribute:: logging.Level
-
-   An object which defines all available logging levels: ``DEBUG``, ``INFO``,
-   ``WARN``, ``ERROR`` and ``FATAL``.
+API reference
+-------------
 
 
-.. js:function:: logging.setEnabled(enabled)
+### logging.Level
 
-   :param boolean enabled: flag indicating if logging should be enabled
-
-   This function disables or enables all logging functionality.
-
-
-.. js:function:: logging.setLevel(level)
-
-   :param level: new logging level
-
-   Use this function to change the root logging level. The default level is INFO. To
-   change the level to DEBUG you can use this:
-
-   .. code-block:: javascript
-
-      logging.setLevel(logging.Level.DEBUG);
-
-   Please note that this only changes the root logging level. You can set a
-   different logging for individual lggers as well:
-
-   .. code-block:: javascript
-
-      var log = logging.getLogger("mypattern");
-      log.setLevel(logging.Level.DEBUG);
+This is an object which defines all available logging levels: ``DEBUG``,
+``INFO``, ``WARN``, ``ERROR`` and ``FATAL``.
 
 
-.. js:function:: logging.getLogger(name)
+### logging.setEnabled(enabled)
 
-   :param string name: name of the logger
-   :returns: a logger instance
+* ``enabled`` (boolean): flag indicating if logging should be enabled
 
-   Retrieve, and optionally create, a named logger instance.
+This function disables or enables all logging functionality.
+
+
+### logging.setLevel(level)
+
+* ``level``: new logging level
+
+Use this function to change the logging level. The default level is INFO. To
+change the level to DEBUG you can use this:
+
+~~~javascript
+logging.setLevel(logging.Level.DEBUG);
+~~~
+
+ *Please note that this only changes the root logging level.* You can set a
+ different logging for individual lggers as well:
+
+~~~javascript
+var log = logging.getLogger("MyModule");
+log.setLevel(logging.Level.DEBUG);
+~~~
+
+### logging.getLogger(name)
+
+* ``name`` (string): name of the logger
+
+Retrieve, and optionally create, a named logger instance.
 
 
 The logging object (`log` in the code example) exposes several methods to log
