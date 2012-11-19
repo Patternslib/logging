@@ -99,7 +99,7 @@ describe("Logger", function() {
             spyOn(writer, "output");
             logging.setLevel(logging.Level.INFO);
             logging.info("Test message");
-            expect(writer.output).toHaveBeenCalledWith(logging.Level.INFO, ["Test message"]);
+            expect(writer.output).toHaveBeenCalled();
         });
 
         it("Log more critical errors", function() {
@@ -127,6 +127,15 @@ describe("Logger", function() {
             expect(writer.output).not.toHaveBeenCalled();
             logging.setEnabled(true);
         });
+
+        it("Writer invocation", function() {
+            var writer = logging.getWriter();
+            spyOn(writer, "output");
+            logging.setLevel(logging.Level.INFO);
+            logging.getLogger("xyzzy.child").info("Test message");
+            expect(writer.output).toHaveBeenCalledWith("xyzzy.child", logging.Level.INFO, ["Test message"]);
+        });
+
     });
 });
 

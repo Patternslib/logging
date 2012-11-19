@@ -43,15 +43,13 @@
     }
 
     IEConsoleWriter.prototype = {
-        output:  function(level, messages) {
+        output:  function(log_name, level, messages) {
             // console.log will magically appear in IE8 when the user opens the
             // F12 Developer Tools, so we have to test for it every time.
             if (console===undefined || console.log===undefined)
                     return;
-            for (var i=0; i<messages.length; i++)
-                if (typeof messages[i]!=="string")
-                    messages[i]=messages[i].toString();
-
+            if (log_name)
+                messages.unshift(log_name+":");
             var message = messages.join(" ");
 
             if (level<=Level.DEBUG) {
@@ -72,7 +70,9 @@
     }
 
     ConsoleWriter.prototype = {
-        output: function(level, messages) {
+        output: function(log_name, level, messages) {
+            if (log_name)
+                messages.unshift(log_name+":");
             if (level<=Level.DEBUG) {
                 // console.debug exists but is deprecated
                 messages.unshift("[DEBUG]");
@@ -149,7 +149,7 @@
             if (!messages.length || !this._getFlag("enabled") || level<this._getFlag("level"))
                 return;
             messages=Array.prototype.slice.call(messages);
-            writer.output(level, messages);
+            writer.output(this.name, level, messages);
         },
 
         debug: function() {
