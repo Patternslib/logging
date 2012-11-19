@@ -23,7 +23,7 @@ logging will registered as a module and no globals will be installed.
 
 ~~~javascript
 define(["logging"], function(logging) {
-    logging.info("Initialisation MyModule");
+    logging.info("Initialisating MyModule");
 });
 ~~~
 
@@ -32,13 +32,13 @@ Configuring through URL
 -----------------------
 
 To facilitate debugging you can change the default log level through the URL
-query string by adding ``pat-loglevel`` options.
+query string by adding ``loglevel`` options.
 
-* ``http://www.example.com/?pat-loglevel=DEBUG`` changes the default log level
+* ``http://www.example.com/?loglevel=DEBUG`` changes the default log level
   to ``DEBUG``.
-* ``http://www.example.com/?pat-loglevel-inject=DEBUG`` changes the log level
+* ``http://www.example.com/?loglevel-inject=DEBUG`` changes the log level
   for just the inject pattern to ``DEBUG``.
-* ``http://www.example.com/?pat-loglevel=ERROR&pat-loglevel-inject=INFO``
+* ``http://www.example.com/?loglevel=ERROR&loglevel-inject=INFO``
   changes the standard log level error, but enables messages at the ``INFO``
   level for the inject pattern.
 

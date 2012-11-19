@@ -188,7 +188,7 @@
 
     root=new Logger();
 
-    var logconfig = /pat-loglevel(|-[^=]+)=([^&]+)/g,
+    var logconfig = /loglevel(|-[^=]+)=([^&]+)/g,
         match;
 
     while ((match=logconfig.exec(window.location.search))!==null) {
