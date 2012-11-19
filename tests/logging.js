@@ -16,6 +16,13 @@ describe("Logger", function() {
             var logger = logging.getLogger("xyzzy");
             expect(logger.dummy).toBe(true);
         });
+
+        it("Request a nested logger", function() {
+            var p = logging.getLogger("xyzzy"),
+                c = p.getLogger("child"),
+                d = logging.getLogger("xyzzy.child");
+            expect(c).toBe(d);
+        });
     });
 
     describe("_getFlag", function() {

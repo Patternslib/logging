@@ -99,9 +99,15 @@
 
     Logger.prototype = {
         getLogger: function(name) {
-            if (!(name in this._loggers))
-                this._loggers[name] = new Logger(name, this);
-            return this._loggers[name];
+            var path = name.split("."),
+                root = this;
+            while (path.length) {
+                var entry = path.shift();
+                if (!(entry in root._loggers))
+                    root._loggers[entry] = new Logger(entry, this);
+                root=root._loggers[entry];
+            }
+            return root;
         },
 
         _getFlag: function(flag) {
