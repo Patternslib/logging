@@ -13,8 +13,8 @@
                 throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
             }
 
-            var aArgs = Array.prototype.slice.call(arguments, 1), 
-                fToBind = this, 
+            var aArgs = Array.prototype.slice.call(arguments, 1),
+                fToBind = this,
                 fNOP = function () {},
                 fBound = function () {
                     return fToBind.apply(this instanceof fNOP &&
@@ -43,12 +43,12 @@
     }
 
     IEConsoleWriter.prototype = {
-            output:  function(level, messages) {
+        output:  function(level, messages) {
             // console.log will magically appear in IE8 when the user opens the
             // F12 Developer Tools, so we have to test for it every time.
             if (console===undefined || console.log===undefined)
                     return;
-            for (i=0; i<messages.length; i++)
+            for (var i=0; i<messages.length; i++)
                 if (typeof messages[i]!=="string")
                     messages[i]=messages[i].toString();
 

@@ -6,13 +6,20 @@ module.exports = function(grunt) {
         jshint: {
             options: {
 		indent: 4,
+                eqeqeq: true,
 		browser: true,
-		jquery: true,
+                devel: true,
+		jquery: false,
 		quotmark: "double",
 		smarttabs: true,
 		trailing: true,
 		undef: true,
-		unused: true
+		unused: true,
+                white: false,
+                predef: [
+                    "define",
+                    "module"
+                ]
             }
         },
         jasmine: {
@@ -22,5 +29,5 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks("grunt-jasmine-runner");
-//    grunt.registerTask("default", "lint jasmine");
+    grunt.registerTask("default", "lint jasmine");
 };
