@@ -106,7 +106,7 @@
                 var entry = path.shift();
                 route.push(entry);
                 if (!(entry in root._loggers))
-                    root._loggers[entry] = new Logger(route.join("."), this);
+                    root._loggers[entry] = new Logger(route.join("."), root);
                 root=root._loggers[entry];
             }
             return root;

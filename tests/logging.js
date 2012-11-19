@@ -22,11 +22,17 @@ describe("Logger", function() {
                 c = p.getLogger("child"),
                 d = logging.getLogger("xyzzy.child");
             expect(c).toBe(d);
+            expect(c._parent).toBe(p);
         });
 
         it("Nested logger has full path as name", function() {
             var logger = logging.getLogger("xyzzy.child.grandchild");
             expect(logger.name).toBe("xyzzy.child.grandchild");
+        });
+
+        it("Set parent on nested path", function() {
+            var logger = logging.getLogger("xyzzy.child.grandchild");
+            expect(logger._parent).toBe(logging.getLogger("xyzzy.child"));
         });
 
         it("Set full name on nested path on child", function() {
