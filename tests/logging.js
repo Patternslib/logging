@@ -28,6 +28,13 @@ describe("Logger", function() {
             var logger = logging.getLogger("xyzzy.child.grandchild");
             expect(logger.name).toBe("xyzzy.child.grandchild");
         });
+
+        it("Set full name on nested path on child", function() {
+            var p = logging.getLogger("xyzzy"),
+                c = p.getLogger("child.foo");
+            expect(c.name).toBe("xyzzy.child.foo");
+        });
+
     });
 
     describe("_getFlag", function() {

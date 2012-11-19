@@ -101,7 +101,7 @@
         getLogger: function(name) {
             var path = name.split("."),
                 root = this,
-                route = [];
+                route = this.name ? [this.name] : [];
             while (path.length) {
                 var entry = path.shift();
                 route.push(entry);
