@@ -1,31 +1,31 @@
-Logging
-=======
+[![Build Status](https://secure.travis-ci.org/Patternslib/logging.png?branch=master)](https://travis-ci.org/Patternslib/logging)
 
-Patterns includes a minimal logging framework  to provide logging facilities.
-To use this you will need to load the logging module and use its `getLogger`
-method to get a log utility. This is typically done as part of the pattern
-definition. The highlighted lines in the example below show the changes you
-will need to make.
+Introduction
+============
 
-.. code-block:: javascript
-   :linenos:
-   :emphasize-lines: 4,5,6,8
+This is a minimal logging framework for javascript. It implements a subset
+of the [log4javascript](http://log4javascript.org/) API, which itself is
+inspired by [log4j](http://logging.apache.org/log4j/). Since log4javascript
+is huge (180kB) and our needs were small we wrote this 8kB replacement which
+still supports configurable log levels and hierarchical loggers.
 
-   define([
-       'require'
-       '../registry',
-       '../core/logging',
-   ], function(require, registry, logging) {
-      var log = logging.getLogger("mypattern");
-      ...
-      log.info("Hello, world");
-      ...
-   });
+*logging* can be used both standalone or as an [AMD
+module](https://github.com/amdjs/amdjs-api/wiki/AMD).  If you do not use AMD
+the logging API is accessible via a global ``logging`` object.
 
-Line 4 tells RequireJS that it needs to load the logging system. The logging
-system will be provided as an extra parameter. In line 6 a log utility for
-this pattern is requested. Finally in line 8 the log utility is used to log
-a message.
+~~~javascript
+logging.info("Hello, world!");
+});
+~~~
+
+If you are using an AMD system such as [RequireJS](http://requirejs.org/)
+logging will registered as a module and no globals will be installed. 
+
+~~~javascript
+define(["logging"], function(logging) {
+    logging.info("Initialisation MyModule");
+});
+~~~
 
 
 Configuring through URL
