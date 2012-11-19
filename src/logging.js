@@ -91,7 +91,7 @@
         this._loggers={};
         this.name=name || "";
         this._parent=parent || null;
-        if (name==="root") {
+        if (!parent) {
             this._enabled=true;
             this._level=Level.WARN;
         }
@@ -184,7 +184,7 @@
     else
         setWriter(new IEConsoleWriter());
 
-    root=new Logger("root");
+    root=new Logger();
 
     var logconfig = /pat-loglevel(|-[^=]+)=([^&]+)/g,
         match;
