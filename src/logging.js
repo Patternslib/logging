@@ -4,9 +4,30 @@
  * Copyright 2012 Simplon B.V.
  */
 
-define([
-        "../compat"  // Needed for function.bind
-], function() {
+(function() {
+    // source: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind
+    if (!Function.prototype.bind) {
+        Function.prototype.bind = function (oThis) {
+            if (typeof this !== "function") {
+                // closest thing possible to the ECMAScript 5 internal IsCallable function
+                throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+            }
+
+            var aArgs = Array.prototype.slice.call(arguments, 1), 
+                fToBind = this, 
+                fNOP = function () {},
+                fBound = function () {
+                    return fToBind.apply(this instanceof fNOP &&
+                            oThis ? this : oThis,
+                            aArgs.concat(Array.prototype.slice.call(arguments)));
+                };
+            fNOP.prototype = this.prototype;
+            fBound.prototype = new fNOP();
+
+            return fBound;
+        };
+    }
+
     var root,    // root logger instance
         writer;  // writer instance, used to output log entries
 
@@ -167,7 +188,7 @@ define([
         logger.setLevel(match[2].toUpperCase());
     }
 
-    return {
+    var api = {
         Level: Level,
         getLogger: root.getLogger.bind(root),
         setEnabled: root.setEnabled.bind(root),
@@ -182,4 +203,11 @@ define([
         getWriter: getWriter,
         setWriter: setWriter
     };
-});
+
+    // Expose as either an AMD module if possible. If not fall back to exposing
+    // a global object.
+    if (typeof define==="function")
+	define("logging", [], function () { return api; } );
+    else
+        window.logging=api;
+})();
