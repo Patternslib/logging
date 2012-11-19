@@ -1,0 +1,29 @@
+{
+	"name": "logging",
+	"title": "logging",
+	"description": "Minimal logging framework",
+	"version": "1.0pre",
+	"homepage": "http://github.com/patterns/logging",
+	"author": {
+		"name": "Wichert Akkerman",
+		"url": "http://www.wiggy.net"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/patterns/logging.git"
+	},
+	"bugs": {
+		"url": "http://github.com/patterns/logging/issues"
+	},
+	"licenses": [
+		{
+			"type": "BSD",
+			"url": "http://github.com/patterns/logging/blob/master/LICENSE.txt"
+		}
+	],
+	"dependencies": {},
+	"devDependencies": {},
+	"keywords": [
+		"logging"
+	]
+}

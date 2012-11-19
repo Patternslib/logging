@@ -1,0 +1,12 @@
+{
+	"options": {
+		"indent": 4,
+		"browser": true,
+		"jquery": true,
+		"quotmark": double
+		"marttabs":" true,
+		"trailing": true,
+		"undef": true,
+		"unused": true
+	}
+}
