@@ -207,7 +207,9 @@
     // Expose as either an AMD module if possible. If not fall back to exposing
     // a global object.
     if (typeof define==="function")
-	define("logging", [], function () { return api; } );
+        define("logging", [], function () {
+            return api;
+        });
     else
         window.logging=api;
 })();
