@@ -23,6 +23,11 @@ describe("Logger", function() {
                 d = logging.getLogger("xyzzy.child");
             expect(c).toBe(d);
         });
+
+        it("Nested logger has full path as name", function() {
+            var logger = logging.getLogger("xyzzy.child.grandchild");
+            expect(logger.name).toBe("xyzzy.child.grandchild");
+        });
     });
 
     describe("_getFlag", function() {

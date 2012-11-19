@@ -100,11 +100,13 @@
     Logger.prototype = {
         getLogger: function(name) {
             var path = name.split("."),
-                root = this;
+                root = this,
+                route = [];
             while (path.length) {
                 var entry = path.shift();
+                route.push(entry);
                 if (!(entry in root._loggers))
-                    root._loggers[entry] = new Logger(entry, this);
+                    root._loggers[entry] = new Logger(route.join("."), this);
                 root=root._loggers[entry];
             }
             return root;
