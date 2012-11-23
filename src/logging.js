@@ -52,16 +52,33 @@
                 messages.unshift(log_name+":");
             var message = messages.join(" ");
 
-            if (level<=Level.DEBUG) {
-                // console.debug exists but is deprecated
-                message="[DEBUG]"+message;
-                console.log(messages);
-            } else if (level<=Level.INFO)
-                console.info(message);
-            else if (level<=Level.WARN)
-                console.warn(message);
-            else
-                console.error(message);
+            // Under some conditions console.log will be available but the
+            // other functions are missing.
+            if (console.info===undefined) {
+                var level_name;
+                if (level<=Level.DEBUG)
+                    level_name="DEBUG";
+                else if (level<=Level.INFO)
+                    level_name="INFO";
+                else if (level<=Level.WARN)
+                    level_name="WARN";
+                else if (level<=Level.ERROR)
+                    level_name="ERROR";
+                else
+                    level_name="FATAL";
+                console.log("["+level_name+"] "+message);
+            } else {
+                if (level<=Level.DEBUG) {
+                    // console.debug exists but is deprecated
+                    message="[DEBUG] "+message;
+                    console.log(message);
+                } else if (level<=Level.INFO)
+                    console.info(message);
+                else if (level<=Level.WARN)
+                    console.warn(message);
+                else
+                    console.error(message);
+            }
         }
     };
 
