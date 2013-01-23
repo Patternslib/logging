@@ -32,5 +32,8 @@
 	},
 	"keywords": [
 		"logging"
-	]
+	],
+    "jam": {
+        "main": "src/logging.js"
+    }
 }
