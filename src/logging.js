@@ -46,7 +46,7 @@
         output:  function(log_name, level, messages) {
             // console.log will magically appear in IE8 when the user opens the
             // F12 Developer Tools, so we have to test for it every time.
-            if (console===undefined || console.log===undefined)
+            if (typeof console===undefined || typeof console.log===undefined)
                     return;
             if (log_name)
                 messages.unshift(log_name+":");
@@ -54,7 +54,7 @@
 
             // Under some conditions console.log will be available but the
             // other functions are missing.
-            if (console.info===undefined) {
+            if (typeof console.info===undefined) {
                 var level_name;
                 if (level<=Level.DEBUG)
                     level_name="DEBUG";
