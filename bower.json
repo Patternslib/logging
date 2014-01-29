@@ -20,5 +20,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "grunt": "~0.3.17",
+    "grunt-jasmine-runner": "latest"
+  },
 }
