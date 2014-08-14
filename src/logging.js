@@ -198,10 +198,11 @@
         writer=w;
     }
 
-    if (window.console && window.console.log && window.console.log.apply!==undefined)
-        setWriter(new ConsoleWriter());
-    else
+    if (!window.console || !window.console.log || typeof window.console.log.apply !== "function") {
         setWriter(new IEConsoleWriter());
+    } else {
+        setWriter(new ConsoleWriter());
+    }
 
     root=new Logger();
 
