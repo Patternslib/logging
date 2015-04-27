@@ -236,6 +236,8 @@
         define("logging", [], function () {
             return api;
         });
+    else if (typeof module !== "undefined" && module.exports)
+        module.exports = api;
     else
         window.logging=api;
 })();

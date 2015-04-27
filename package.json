@@ -16,6 +16,7 @@
 	"scripts": {
 		"test": "grunt jasmine"
 	},
+	"main": "src/logging.js",
 	"bugs": {
 		"url": "http://github.com/patterns/logging/issues"
 	},
